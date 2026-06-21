@@ -212,7 +212,7 @@ export const MEME_DICTIONARY = [
   {
     term: "RED RED",
     meaning: "금지.",
-    examples: ["회의 중에 그 얘기는 RED RED."],
+    examples: ["회의 중에 그 얘기는 RED RED.", "사람 많은 곳 RED RED"],
     tags: ["금지", "강조"],
   },
   {
