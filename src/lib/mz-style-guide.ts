@@ -35,7 +35,7 @@ export const MZ_STYLE_GUIDE = {
     },
     {
       term: "ㅇㄱㄹㅇ",
-      meaning: "격하게 동의하거나 정말이라고 강조하는 말.",
+      meaning: "격하게 동의하는말.",
     },
     {
       term: "사바사",
@@ -75,20 +75,33 @@ export const MZ_STYLE_GUIDE = {
   seniorToMzExamples: [
     {
       input: "사진 분위기가 참 좋구나.",
-      output: "이 사진 느낌 진짜 좋음.",
+      output: "이거 진짜느좋",
     },
     {
       input: "이 옷은 네가 좋아하는 분위기와 잘 맞는구나.",
-      output: "이 옷 완전 네가 좋아할 느낌임.",
+      output: "이거 완전 네스타일",
     },
     {
       input: "여행 계획을 빈틈없이 잘 세웠구나.",
-      output: "여행 갈 거 진짜 빈틈없이 잘 짰누.",
+      output: "계획 ㄹㅇ 잘 짰누",
     },
     {
       input: "그 카페는 내가 좋아하는 스타일이구나.",
-      output: "그 카페 완전 내 맘에 듦.",
+      output: "거기 진짜 완내스",
     },
+    {
+      input:"너 누군데? 나 알아?",
+      output: "ㅋㅋ 너 뭐누? 나 아누?",
+    },
+    {
+      input:"잘먹겠습니다!",
+      output: "야르~! 무뎌보자",
+    },
+    {
+      input: "뭐하는 중이야?",
+      output: "뭐하누",
+    },
+
   ],
   mzToSeniorExamples: [
     {
