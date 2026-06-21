@@ -303,4 +303,16 @@ export const MEME_DICTIONARY = [
     examples: ["나이만 보고 사람을 영포티라고 부르는 건 무례해."],
     tags: ["나이", "비하"],
   },
+  {
+    term: "멘헤라",
+    meaning: "정서적으로 불안정해진 상태.",
+    examples: ["나 학점 조지고 멘헤라 상태됬어"],
+    tags: ["감정", "일본어"],
+  },
+  {
+    term: "나데나데",
+    meaning: "상대를 쓰다듬듯 다정하게 달래거나 칭찬하는 행동.",
+    examples: ["오늘 힘들었지? 나데나데 해 줄게."],
+    tags: ["위로", "애정", "일본어"],
+  },
 ] as const satisfies readonly MemeEntry[];

@@ -52,6 +52,8 @@ const expectedTerms = [
   "멍청비용",
   "문찐",
   "영포티",
+  "멘헤라",
+  "나데나데",
 ] as const;
 
 describe("MEME_DICTIONARY", () => {
