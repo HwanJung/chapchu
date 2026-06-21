@@ -1,7 +1,7 @@
 // 월 1회 검수하고 reviewedAt, 표현 목록, 예시를 한 번에 갱신한다.
 export const MZ_STYLE_GUIDE = {
   reviewedAt: "2026-06-21",
-  approvedExpressions: ["느좋", "추구미", "감다살", "완내스"],
+  approvedExpressions: ["느좋", "추구미", "감다살"],
   prohibitedExpressions: [
     "대박",
     "짱",
@@ -12,10 +12,66 @@ export const MZ_STYLE_GUIDE = {
     "존맛",
     "개이득",
     "오지다",
-    "실화냐",
     "어쩔티비",
+    "완내스"
   ],
   maxTrendExpressionsPerSentence: 2,
+  termDefinitions: [
+    {
+      term: "정병",
+      meaning: "정신병을 줄여 이르는 말.",
+    },
+    {
+      term: "추구미",
+      meaning: "자신이 추구하는 미의식이나 이미지.",
+    },
+    {
+      term: "억텐",
+      meaning: "억지로 높은 텐션을 유지하는 것.",
+    },
+    {
+      term: "군침이 싹 도네",
+      meaning: "음식이 맛있어 보여 먹고 싶다는 뜻.",
+    },
+    {
+      term: "ㅇㄱㄹㅇ",
+      meaning: "격하게 동의하거나 정말이라고 강조하는 말.",
+    },
+    {
+      term: "사바사",
+      meaning: "사람마다 다르다는 뜻.",
+    },
+    {
+      term: "돼지파티",
+      meaning:
+        "먹고 싶은 음식을 종류별로 차려 놓고 배부를 때까지 먹는 파티.",
+    },
+    {
+      term: "인급동",
+      meaning: "인기가 급상승한 동영상.",
+    },
+    {
+      term: "스밍",
+      meaning: "노래를 반복해서 들어 순위를 올려 주는 행위.",
+    },
+    {
+      term: "핑프",
+      meaning:
+        "검색하면 알 수 있는 정보를 직접 검색하지 않고 물어보는 사람.",
+    },
+    {
+      term: "많관부",
+      meaning: "많은 관심 부탁드립니다를 줄여 이르는 말.",
+    },
+    {
+      term: "멍청비용",
+      meaning: "부주의로 인해 불필요하게 지출하는 비용.",
+    },
+    {
+      term: "문찐",
+      meaning: "유행이나 대중문화를 잘 몰라 뒤처지는 사람.",
+    },
+  ],
   seniorToMzExamples: [
     {
       input: "사진 분위기가 참 좋구나.",
@@ -63,6 +119,10 @@ export const MZ_STYLE_GUIDE = {
     {
       input: "마라탕",
       output: "어리다는 뜻이다.",
+    },
+    {
+      input: "바이럴 타다",
+      output: "유행이 되다",
     },
     {
       input: "잼민이",
@@ -163,6 +223,60 @@ export const MZ_STYLE_GUIDE = {
     {
       input: "뭐하누?",
       output: "뭐 하고 있어?",
+    },
+    {
+      input: "정병",
+      output: "정신병.",
+    },
+    {
+      input: "추구미",
+      output: "추구하는 미의식.",
+    },
+    {
+      input: "억텐",
+      output: "억지로 높은 텐션을 유지하는 것.",
+    },
+    {
+      input: "군침이 싹 도네",
+      output: "음식이 맛있어 보인다.",
+    },
+    {
+      input: "ㅇㄱㄹㅇ",
+      output: "격하게 동의한다는 뜻 또는 정말이라는 뜻.",
+    },
+    {
+      input: "사바사",
+      output: "사람마다 다르다는 뜻.",
+    },
+    {
+      input: "돼지파티",
+      output:
+        "먹고 싶은 음식을 종류별로 차려 놓고 배부를 때까지 먹는 파티.",
+    },
+    {
+      input: "스밍",
+      output: "노래를 반복해서 들어 순위를 올려 주는 행위.",
+    },
+    {
+      input: "핑프",
+      output:
+        "검색하면 알 수 있는 정보를 직접 검색하지 않고 물어보는 사람.",
+    },
+    {
+      input: "많관부",
+      output: "많은 관심 부탁드립니다.",
+    },
+    {
+      input: "멍청비용",
+      output: "부주의로 인해 나가는 비용.",
+    },
+    {
+      input: "문찐",
+      output: "유행에 뒤처지는 사람.",
+    },
+    {
+      input: "영포티",
+      output: "나이가 많은데 젊어보이려 하는 사람",
     },
   ],
 } as const;

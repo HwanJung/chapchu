@@ -51,6 +51,11 @@ describe("translation prompt", () => {
 
     expect(prompt).toContain("격식 수준은 '정중함:");
     expect(prompt).toContain("<mz_style_guide reviewed_at=\"2026-06-21\">");
+    expect(prompt).toContain("<term_definitions>");
+    for (const definition of MZ_STYLE_GUIDE.termDefinitions) {
+      expect(prompt).toContain(`<expression>${definition.term}</expression>`);
+      expect(prompt).toContain(`<meaning>${definition.meaning}</meaning>`);
+    }
     expect(prompt).toContain("<examples>");
     for (const example of MZ_STYLE_GUIDE.mzToSeniorExamples) {
       expect(prompt).toContain(`<input>${example.input}</input>`);

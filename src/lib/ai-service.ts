@@ -48,6 +48,22 @@ function serializeExamples(
     .join("\n");
 }
 
+function serializeTermDefinitions(
+  definitions: readonly {
+    readonly term: string;
+    readonly meaning: string;
+  }[],
+): string {
+  return definitions
+    .map(
+      ({ term, meaning }) => `<term>
+<expression>${term}</expression>
+<meaning>${meaning}</meaning>
+</term>`,
+    )
+    .join("\n");
+}
+
 function buildSeniorToMzStyleGuide(): string {
   const examples = serializeExamples(MZ_STYLE_GUIDE.seniorToMzExamples);
 
@@ -74,9 +90,17 @@ ${examples}
 
 function buildMzToSeniorStyleGuide(): string {
   const examples = serializeExamples(MZ_STYLE_GUIDE.mzToSeniorExamples);
+  const termDefinitions = serializeTermDefinitions(
+    MZ_STYLE_GUIDE.termDefinitions,
+  );
 
   return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
+<term_definitions>
+${termDefinitions}
+</term_definitions>
 <rules>
+- term_definitions의 의미를 우선 기준으로 삼아 문맥에 맞게 풀어 쓴다.
+- 표현의 표면적인 단어만 보고 뜻을 임의로 추측하지 않는다.
 - 예시의 입력 표현이 문장에 포함되면 문맥과 격식 수준에 맞는 일반적인 표현으로 풀어 쓴다.
 - 예시와 정확히 일치하지 않더라도 같은 표현의 활용형이나 띄어쓰기 변형은 같은 뜻으로 해석한다.
 - 비유나 유행 표현의 의미를 풀되 원문의 감정과 의도는 유지한다.
