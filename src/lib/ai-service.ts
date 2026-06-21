@@ -1,5 +1,6 @@
 import { zodTextFormat } from "openai/helpers/zod";
 import { AIRefusalError } from "@/lib/api-error";
+import { MEME_DICTIONARY } from "@/lib/meme-dictionary";
 import { MZ_STYLE_GUIDE } from "@/lib/mz-style-guide";
 import { getOpenAIClient, getOpenAIModel } from "@/lib/openai";
 import {
@@ -40,11 +41,22 @@ function serializeExamples(
     .join("\n");
 }
 
+function buildMemeDictionaryReference(): string {
+  return `<prohibited_expressions>${MZ_STYLE_GUIDE.prohibitedExpressions.join(", ")}</prohibited_expressions>
+<meme_dictionary>
+${JSON.stringify(MEME_DICTIONARY, null, 2)}
+</meme_dictionary>
+<meme_dictionary_rules>
+- meme_dictionary는 우선 참고 자료다.
+- examples는 의미와 사용 맥락을 판단하는 용도로만 사용하고, examples의 인물이나 상황을 번역 결과에 복사하지 않는다.
+- prohibited_expressions는 meme_dictionary보다 우선하며, 포함된 표현은 어떤 경우에도 결과에 사용하지 않는다.
+</meme_dictionary_rules>`;
+}
+
 function buildSeniorToMzStyleGuide(): string {
   const examples = serializeExamples(MZ_STYLE_GUIDE.seniorToMzExamples);
 
   return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
-<prohibited_expressions>${MZ_STYLE_GUIDE.prohibitedExpressions.join(", ")}</prohibited_expressions>
 <role>
 - 너는 Papago처럼 일반어를 MZ 말투로 번역한다.
 </role>
@@ -67,6 +79,9 @@ function buildSeniorToMzStyleGuide(): string {
 - 물음, 감탄, 상대의 행동에 대한 반응에는 '~하누', '~했누', '~이누' 같은 말끝을 문맥에 맞게 섞는다.
 - "ㅋㅋ", "ㄹㅇ", "ㅇㅈ", "ㄱㄱ", "ㄴㄴ" 등은 자연스럽게 사용할 수 있다.
 - 딱딱한 한자어나 격식을 차린 낱말은 최대한 피하고, 같은 뜻의 쉽고 일상적인 우리말을 우선한다.
+- 원문의 의미와 meme_dictionary의 meaning, tags, examples가 모두 문맥에 맞는 항목을 우선 선택한다.
+- 문맥에 맞는 사전 항목이 없으면 밈을 억지로 사용하지 않는다.
+- 문맥상 자연스러우면 meme_dictionary에 없는 밈도 사용할 수 있다.
 </rules>
 </mz_style_guide>
 <examples>
@@ -75,18 +90,14 @@ ${examples}
 }
 
 function buildMzToSeniorStyleGuide(): string {
-  const examples = serializeExamples(MZ_STYLE_GUIDE.mzToSeniorExamples);
-
   return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
 <rules>
 - 표현의 표면적인 단어만 보고 뜻을 임의로 추측하지 않는다.
-- 예시의 입력 표현이 문장에 포함되면 문맥에 맞는 일반적인 표현으로 풀어 쓴다.
-- 예시와 정확히 일치하지 않더라도 같은 표현의 활용형이나 띄어쓰기 변형은 같은 뜻으로 해석한다.
+- 입력에서 meme_dictionary의 밈을 발견하면 meaning을 우선하고 examples로 문맥을 판단해 일반적인 표현으로 풀어 쓴다.
+- term과 정확히 일치하지 않더라도 같은 표현의 활용형이나 띄어쓰기 변형은 같은 뜻으로 해석한다.
+- meme_dictionary에 없는 밈도 문맥에 따라 해석하되 결과는 일반적인 표현으로 쓴다.
 - 비유나 유행 표현의 의미를 풀되 원문의 감정과 의도는 유지한다.
 </rules>
-<examples>
-${examples}
-</examples>
 </mz_style_guide>`;
 }
 
@@ -105,6 +116,7 @@ ${buildMzToSeniorStyleGuide()}`;
 
   return `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.
 ${sharedRules}
+${buildMemeDictionaryReference()}
 ${directionRules}`;
 }
 
