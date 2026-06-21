@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  aiTranslateResponseSchema,
   rewriteRequestSchema,
   translateRequestSchema,
   translateResponseSchema,
@@ -46,9 +47,53 @@ describe("rewriteRequestSchema", () => {
 });
 
 describe("translateResponseSchema", () => {
-  it("accepts translated text without term explanations", () => {
-    expect(translateResponseSchema.parse({ resultText: "결과" })).toEqual({
-      resultText: "결과",
-    });
+  const explanation = {
+    term: "느좋",
+    meaning: "느낌이 좋다.",
+    example: "오늘 올린 사진 완전 느좋.",
+  };
+
+  it("accepts zero through five term explanations", () => {
+    expect(
+      translateResponseSchema.safeParse({
+        resultText: "결과",
+        termExplanations: [],
+      }).success,
+    ).toBe(true);
+    expect(
+      translateResponseSchema.safeParse({
+        resultText: "결과",
+        termExplanations: Array.from({ length: 5 }, (_, index) => ({
+          ...explanation,
+          term: `${explanation.term}${index}`,
+        })),
+      }).success,
+    ).toBe(true);
+  });
+
+  it("rejects six term explanations", () => {
+    expect(
+      translateResponseSchema.safeParse({
+        resultText: "결과",
+        termExplanations: Array.from({ length: 6 }, () => explanation),
+      }).success,
+    ).toBe(false);
+  });
+});
+
+describe("aiTranslateResponseSchema", () => {
+  it("accepts an empty matched term list and rejects more than five terms", () => {
+    expect(
+      aiTranslateResponseSchema.safeParse({
+        resultText: "결과",
+        matchedTerms: [],
+      }).success,
+    ).toBe(true);
+    expect(
+      aiTranslateResponseSchema.safeParse({
+        resultText: "결과",
+        matchedTerms: ["1", "2", "3", "4", "5", "6"],
+      }).success,
+    ).toBe(false);
   });
 });

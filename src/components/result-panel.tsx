@@ -8,7 +8,6 @@ interface ResultPanelProps<T> {
   title: string;
   emptyMessage: string;
   getText: (data: T) => string;
-  renderText?: (data: T) => ReactNode;
   onRetry: () => void;
   children?: (data: T) => ReactNode;
 }
@@ -18,7 +17,6 @@ export function ResultPanel<T>({
   title,
   emptyMessage,
   getText,
-  renderText,
   onRetry,
   children,
 }: ResultPanelProps<T>) {
@@ -94,7 +92,7 @@ export function ResultPanel<T>({
             {copied ? "복사했어요" : "복사"}
           </button>
         </div>
-        <div className="result-text">{renderText ? renderText(state.data) : text}</div>
+        <div className="result-text">{text}</div>
         <p className="ai-note">AI가 만든 제안이에요. 개인과 상황에 따라 적합한 표현은 달라질 수 있어요.</p>
       </section>
       {children?.(state.data)}

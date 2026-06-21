@@ -565,32 +565,6 @@ main {
   font-size: 11px;
 }
 
-.term-highlight {
-  padding: 0 3px;
-  border-radius: 5px;
-  color: inherit;
-}
-
-.term-highlight.peach {
-  background: #ffe1d7;
-}
-
-.term-highlight.blue {
-  background: #dceafd;
-}
-
-.term-highlight.green {
-  background: #dcefe4;
-}
-
-.term-highlight.yellow {
-  background: #fff0b9;
-}
-
-.term-highlight.purple {
-  background: #e9def8;
-}
-
 .terms-section {
   padding: 26px;
 }
@@ -642,39 +616,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
-}
-
-.term-title > span {
-  display: grid;
-  place-items: center;
-  width: 23px;
-  height: 23px;
-  border-radius: 7px;
-  background: var(--peach-pale);
-  color: #b84f3b;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.term-card.blue .term-title > span {
-  background: var(--blue-pale);
-  color: var(--blue);
-}
-
-.term-card.green .term-title > span {
-  background: var(--green-pale);
-  color: var(--green);
-}
-
-.term-card.yellow .term-title > span {
-  background: var(--yellow-pale);
-  color: #96731c;
-}
-
-.term-card.purple .term-title > span {
-  background: var(--purple-pale);
-  color: #79549d;
+  margin-bottom: 6px;
 }
 
 .term-title h3 {
@@ -683,17 +625,26 @@ main {
 }
 
 .term-card p {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 7px;
-  margin: 7px 0 0;
+  margin: 0;
   color: #66716c;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
-.term-card p strong {
+.term-card .term-meaning {
   color: #394640;
+}
+
+.term-card .term-example {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid #edf0ed;
+  color: #7a847f;
+  font-size: 11px;
+}
+
+.term-example strong {
+  color: var(--green-dark);
 }
 
 .audience-picker {

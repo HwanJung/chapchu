@@ -48,6 +48,9 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
     expect(prompt).not.toContain("<approved_expressions>");
     expect(prompt).not.toContain("문장당 유행 표현은 최대");
     expect(prompt).not.toContain("격식 수준");
+    expect(prompt).toContain(
+      "matchedTerms에는 번역 결과 resultText에 실제로 사용한 표현만 넣는다",
+    );
   });
 
   it("uses dictionary meanings and context for a known meme", () => {
@@ -67,6 +70,12 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
     expect(prompt).not.toContain("<examples>");
     expect(prompt).not.toContain("<approved_expressions>");
     expect(prompt).not.toContain("MZ세대");
+    expect(prompt).toContain(
+      "matchedTerms에는 입력 문장 inputText에서 실제로 밈 의미로 사용된 표현만 넣는다",
+    );
+    expect(prompt).toContain("햄(음식), 화석(실제 화석), 마라탕(음식)");
+    expect(prompt).toContain("중복 없이 최대 5개");
+    expect(prompt).toContain("조건에 맞는 표현이 없으면 빈 배열");
   });
 
   it("does not force a meme when translating an unrelated general sentence", () => {
@@ -107,7 +116,7 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
 
 describe("structured output handling", () => {
   it("returns parsed structured output", () => {
-    const parsed = { resultText: "안녕하세요." };
+    const parsed = { resultText: "안녕하세요.", matchedTerms: [] };
     expect(requireParsed(parsed, [])).toBe(parsed);
   });
 

@@ -1,3 +1,5 @@
+import type { TermExplanation } from "@/lib/schemas";
+
 export interface MemeEntry {
   term: string;
   meaning: string;
@@ -316,3 +318,28 @@ export const MEME_DICTIONARY = [
     tags: ["위로", "애정", "일본어"],
   },
 ] as const satisfies readonly MemeEntry[];
+
+const MEME_BY_TERM = new Map<string, MemeEntry>(
+  MEME_DICTIONARY.map((entry) => [entry.term, entry]),
+);
+
+export function resolveTermExplanations(
+  matchedTerms: readonly string[],
+): TermExplanation[] {
+  const seen = new Set<string>();
+  const explanations: TermExplanation[] = [];
+
+  for (const term of matchedTerms) {
+    if (seen.has(term)) continue;
+
+    const entry = MEME_BY_TERM.get(term);
+    const example = entry?.examples[0];
+    if (!entry || !example) continue;
+
+    seen.add(term);
+    explanations.push({ term: entry.term, meaning: entry.meaning, example });
+    if (explanations.length === 5) break;
+  }
+
+  return explanations;
+}

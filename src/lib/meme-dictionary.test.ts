@@ -87,7 +87,7 @@ describe("MEME_DICTIONARY", () => {
   });
 
   it("splits previously combined expressions into individual entries", () => {
-    const terms = new Set(MEME_DICTIONARY.map(({ term }) => term));
+    const terms = new Set<string>(MEME_DICTIONARY.map(({ term }) => term));
 
     for (const term of [
       "듀듀듀",

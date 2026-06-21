@@ -29,13 +29,17 @@ export const rewriteRequestSchema = z.object({
 export const termExplanationSchema = z.object({
   term: z.string().min(1),
   meaning: z.string().min(1),
-  nuance: z.string().min(1),
-  usage: z.string().min(1),
-  caution: z.string().min(1),
+  example: z.string().min(1),
+});
+
+export const aiTranslateResponseSchema = z.object({
+  resultText: z.string().min(1),
+  matchedTerms: z.array(z.string().min(1)).max(5),
 });
 
 export const translateResponseSchema = z.object({
   resultText: z.string().min(1),
+  termExplanations: z.array(termExplanationSchema).max(5),
 });
 
 export const rewriteResponseSchema = z.object({
@@ -47,6 +51,7 @@ export type Audience = z.infer<typeof audienceSchema>;
 export type TranslateRequest = z.infer<typeof translateRequestSchema>;
 export type RewriteRequest = z.infer<typeof rewriteRequestSchema>;
 export type TermExplanation = z.infer<typeof termExplanationSchema>;
+export type AiTranslateResponse = z.infer<typeof aiTranslateResponseSchema>;
 export type TranslateResponse = z.infer<typeof translateResponseSchema>;
 export type RewriteResponse = z.infer<typeof rewriteResponseSchema>;
 

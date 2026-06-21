@@ -4,12 +4,12 @@ import { MEME_DICTIONARY } from "@/lib/meme-dictionary";
 import { MZ_STYLE_GUIDE } from "@/lib/mz-style-guide";
 import { getOpenAIClient, getOpenAIModel } from "@/lib/openai";
 import {
+  aiTranslateResponseSchema,
   rewriteResponseSchema,
-  translateResponseSchema,
+  type AiTranslateResponse,
   type RewriteRequest,
   type RewriteResponse,
   type TranslateRequest,
-  type TranslateResponse,
 } from "@/lib/schemas";
 
 const audienceDescriptions = {
@@ -101,6 +101,23 @@ function buildMzToSeniorStyleGuide(): string {
 </mz_style_guide>`;
 }
 
+function buildMatchedTermsRules(request: TranslateRequest): string {
+  const target =
+    request.direction === "MZ_TO_SENIOR"
+      ? "입력 문장 inputText에서 실제로 밈 의미로 사용된 표현"
+      : "번역 결과 resultText에 실제로 사용한 표현";
+
+  return `<matched_terms_rules>
+- matchedTerms에는 ${target}만 넣는다.
+- matchedTerms의 값은 반드시 meme_dictionary에 있는 term 표제어와 정확히 같아야 한다.
+- 실제 문맥에서 meme_dictionary의 meaning으로 쓰인 표현만 고른다.
+- 햄(음식), 화석(실제 화석), 마라탕(음식)처럼 일반 단어와 표제어가 같아도 밈 의미가 아니면 제외한다.
+- 대상 문장에 등장한 순서대로, 중복 없이 최대 5개를 넣는다.
+- 조건에 맞는 표현이 없으면 빈 배열을 반환한다.
+- meaning, examples 등의 설명 문구를 만들거나 matchedTerms에 넣지 않는다.
+</matched_terms_rules>`;
+}
+
 export function buildTranslationSystemPrompt(request: TranslateRequest): string {
   const direction =
     request.direction === "MZ_TO_SENIOR"
@@ -117,7 +134,8 @@ ${buildMzToSeniorStyleGuide()}`;
   return `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.
 ${sharedRules}
 ${buildMemeDictionaryReference()}
-${directionRules}`;
+${directionRules}
+${buildMatchedTermsRules(request)}`;
 }
 
 export function hasRefusal(output: unknown): boolean {
@@ -147,7 +165,7 @@ export function requireParsed<T>(parsed: T | null, output: unknown): T {
 
 export async function translateText(
   request: TranslateRequest,
-): Promise<TranslateResponse> {
+): Promise<AiTranslateResponse> {
   const response = await getOpenAIClient().responses.parse({
     model: getOpenAIModel(),
     input: [
@@ -158,7 +176,7 @@ export async function translateText(
       { role: "user", content: request.inputText },
     ],
     text: {
-      format: zodTextFormat(translateResponseSchema, "generation_translation"),
+      format: zodTextFormat(aiTranslateResponseSchema, "generation_translation"),
     },
   });
 
