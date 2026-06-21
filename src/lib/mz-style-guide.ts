@@ -75,19 +75,19 @@ export const MZ_STYLE_GUIDE = {
   seniorToMzExamples: [
     {
       input: "사진 분위기가 참 좋구나.",
-      output: "이 사진 느낌 진짜 좋음.",
+      output: "이거 진짜느좋",
     },
     {
       input: "이 옷은 네가 좋아하는 분위기와 잘 맞는구나.",
-      output: "이 옷 완전 네가 좋아할 느낌임.",
+      output: "이거 완전 네스타일",
     },
     {
       input: "여행 계획을 빈틈없이 잘 세웠구나.",
-      output: "여행 갈 거 진짜 빈틈없이 잘 짰누.",
+      output: "계획 ㄹㅇ 잘 짰누",
     },
     {
       input: "그 카페는 내가 좋아하는 스타일이구나.",
-      output: "그 카페 완전 내 맘에 듦.",
+      output: "거기 진짜 완내스",
     },
   ],
   mzToSeniorExamples: [
