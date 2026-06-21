@@ -101,7 +101,22 @@ export const MZ_STYLE_GUIDE = {
       input: "뭐하는 중이야?",
       output: "뭐하누",
     },
-
+    {
+      input: "이거 몰라? 완전 나이 들었네~",
+      output: "이것도 몰라? 완전 늙크크;;",
+    },
+    {
+      input: "어린이는 발닦고 주무시기나 하셔.",
+      output: "마라탕은 가서 마라탕이라 무라",
+    },
+    {
+      input: "어떡해. 정말 슬프다.",
+      output: "듀아아아아아아",
+    },
+    {
+      input: "잘 모르겠는데?",
+      output: "몰?루",
+    },
   ],
   mzToSeniorExamples: [
     {
