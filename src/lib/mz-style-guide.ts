@@ -89,6 +89,19 @@ export const MZ_STYLE_GUIDE = {
       input: "그 카페는 내가 좋아하는 스타일이구나.",
       output: "거기 진짜 완내스",
     },
+    {
+      input:"너 누군데? 나 알아?",
+      output: "ㅋㅋ 너 뭐누? 나 아누?",
+    },
+    {
+      input:"잘먹겠습니다!",
+      output: "야르~! 무뎌보자",
+    },
+    {
+      input: "뭐하는 중이야?",
+      output: "뭐하누",
+    },
+
   ],
   mzToSeniorExamples: [
     {
