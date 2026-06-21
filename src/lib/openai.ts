@@ -6,7 +6,7 @@ export function getOpenAIClient() {
   if (!client) {
     client = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
-      timeout: 15_000,
+      timeout: 30_000,
       maxRetries: 1,
     });
   }

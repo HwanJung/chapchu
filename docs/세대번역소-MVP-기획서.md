@@ -168,8 +168,7 @@ MVP에서는 다음 6개 대상을 제공한다.
 ```json
 {
   "inputText": "점메추 부탁",
-  "direction": "MZ_TO_SENIOR",
-  "formalityLevel": 2
+  "direction": "MZ_TO_SENIOR"
 }
 ```
 
@@ -214,9 +213,6 @@ MVP에서는 다음 6개 대상을 제공한다.
 ```text
 direction:
   MZ_TO_SENIOR | SENIOR_TO_MZ
-
-formalityLevel:
-  1 | 2 | 3 | 4 | 5
 
 audience:
   PROFESSOR | BOSS | COWORKER | FRIEND | PARTNER | FAMILY

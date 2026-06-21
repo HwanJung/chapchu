@@ -11,14 +11,6 @@ import {
   type TranslateResponse,
 } from "@/lib/schemas";
 
-const formalityDescriptions: Record<number, string> = {
-  1: "매우 정중함: 공식적인 자리에서도 쓸 수 있는 존댓말",
-  2: "정중함: 예의를 갖춘 자연스러운 존댓말",
-  3: "보통: 일상에서 무난한 중립적 말투",
-  4: "친근함: 가까운 사이에서 쓰는 편안한 말투",
-  5: "매우 캐주얼: 아주 가까운 사이의 가볍고 자연스러운 말투",
-};
-
 const audienceDescriptions = {
   PROFESSOR: "교수님",
   BOSS: "직장 상사",
@@ -44,22 +36,6 @@ function serializeExamples(
 <input>${input}</input>
 <output>${output}</output>
 </example>`,
-    )
-    .join("\n");
-}
-
-function serializeTermDefinitions(
-  definitions: readonly {
-    readonly term: string;
-    readonly meaning: string;
-  }[],
-): string {
-  return definitions
-    .map(
-      ({ term, meaning }) => `<term>
-<expression>${term}</expression>
-<meaning>${meaning}</meaning>
-</term>`,
     )
     .join("\n");
 }
@@ -101,18 +77,11 @@ ${examples}
 
 function buildMzToSeniorStyleGuide(): string {
   const examples = serializeExamples(MZ_STYLE_GUIDE.mzToSeniorExamples);
-  const termDefinitions = serializeTermDefinitions(
-    MZ_STYLE_GUIDE.termDefinitions,
-  );
 
   return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
-<term_definitions>
-${termDefinitions}
-</term_definitions>
 <rules>
-- term_definitions의 의미를 우선 기준으로 삼아 문맥에 맞게 풀어 쓴다.
 - 표현의 표면적인 단어만 보고 뜻을 임의로 추측하지 않는다.
-- 예시의 입력 표현이 문장에 포함되면 문맥과 격식 수준에 맞는 일반적인 표현으로 풀어 쓴다.
+- 예시의 입력 표현이 문장에 포함되면 문맥에 맞는 일반적인 표현으로 풀어 쓴다.
 - 예시와 정확히 일치하지 않더라도 같은 표현의 활용형이나 띄어쓰기 변형은 같은 뜻으로 해석한다.
 - 비유나 유행 표현의 의미를 풀되 원문의 감정과 의도는 유지한다.
 </rules>
@@ -133,7 +102,6 @@ export function buildTranslationSystemPrompt(request: TranslateRequest): string 
       ? `- 입력 문장을 ${direction} 번역한다.
 ${buildSeniorToMzStyleGuide()}`
       : `- 입력 문장을 ${direction} 번역한다.
-- 격식 수준은 '${formalityDescriptions[request.formalityLevel]}'이다.
 ${buildMzToSeniorStyleGuide()}`;
 
   return `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.

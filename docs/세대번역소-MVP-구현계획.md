@@ -86,8 +86,7 @@
 ```json
 {
   "inputText": "점메추 부탁",
-  "direction": "MZ_TO_SENIOR",
-  "formalityLevel": 2
+  "direction": "MZ_TO_SENIOR"
 }
 ```
 
@@ -148,7 +147,6 @@
 
 - `inputText`: 앞뒤 공백 제거 후 1~500자
 - `direction`: `MZ_TO_SENIOR | SENIOR_TO_MZ`
-- `formalityLevel`: 1~5 사이의 정수
 - `audience`: `PROFESSOR | BOSS | COWORKER | FRIEND | PARTNER | FAMILY`
 
 ---

@@ -16,62 +16,6 @@ export const MZ_STYLE_GUIDE = {
     "완내스"
   ],
   maxTrendExpressionsPerSentence: 2,
-  termDefinitions: [
-    {
-      term: "정병",
-      meaning: "정신병을 줄여 이르는 말.",
-    },
-    {
-      term: "추구미",
-      meaning: "자신이 추구하는 미의식이나 이미지.",
-    },
-    {
-      term: "억텐",
-      meaning: "억지로 높은 텐션을 유지하는 것.",
-    },
-    {
-      term: "군침이 싹 도네",
-      meaning: "음식이 맛있어 보여 먹고 싶다는 뜻.",
-    },
-    {
-      term: "ㅇㄱㄹㅇ",
-      meaning: "격하게 동의하는말.",
-    },
-    {
-      term: "사바사",
-      meaning: "사람마다 다르다는 뜻.",
-    },
-    {
-      term: "돼지파티",
-      meaning:
-        "먹고 싶은 음식을 종류별로 차려 놓고 배부를 때까지 먹는 파티.",
-    },
-    {
-      term: "인급동",
-      meaning: "인기가 급상승한 동영상.",
-    },
-    {
-      term: "스밍",
-      meaning: "노래를 반복해서 들어 순위를 올려 주는 행위.",
-    },
-    {
-      term: "핑프",
-      meaning:
-        "검색하면 알 수 있는 정보를 직접 검색하지 않고 물어보는 사람.",
-    },
-    {
-      term: "많관부",
-      meaning: "많은 관심 부탁드립니다를 줄여 이르는 말.",
-    },
-    {
-      term: "멍청비용",
-      meaning: "부주의로 인해 불필요하게 지출하는 비용.",
-    },
-    {
-      term: "문찐",
-      meaning: "유행이나 대중문화를 잘 몰라 뒤처지는 사람.",
-    },
-  ],
   seniorToMzExamples: [
     {
       input: "사진 분위기가 참 좋구나.",
@@ -84,10 +28,6 @@ export const MZ_STYLE_GUIDE = {
     {
       input: "여행 계획을 빈틈없이 잘 세웠구나.",
       output: "계획 ㄹㅇ 잘 짰누",
-    },
-    {
-      input: "그 카페는 내가 좋아하는 스타일이구나.",
-      output: "거기 진짜 완내스",
     },
     {
       input:"너 누군데? 나 알아?",

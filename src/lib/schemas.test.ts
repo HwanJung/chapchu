@@ -9,7 +9,6 @@ describe("translateRequestSchema", () => {
   const validRequest = {
     inputText: "점메추 부탁",
     direction: "MZ_TO_SENIOR",
-    formalityLevel: 3,
   };
 
   it("trims and accepts a valid input", () => {
@@ -30,14 +29,12 @@ describe("translateRequestSchema", () => {
     ).toBe(false);
   });
 
-  it.each([
-    [{ ...validRequest, direction: "UNKNOWN" }],
-    [{ ...validRequest, formalityLevel: 0 }],
-    [{ ...validRequest, formalityLevel: 6 }],
-    [{ ...validRequest, formalityLevel: 2.5 }],
-  ])("rejects an invalid option: %o", (request) => {
-    expect(translateRequestSchema.safeParse(request).success).toBe(false);
-  });
+  it.each([[{ ...validRequest, direction: "UNKNOWN" }]])(
+    "rejects an invalid option: %o",
+    (request) => {
+      expect(translateRequestSchema.safeParse(request).success).toBe(false);
+    },
+  );
 });
 
 describe("rewriteRequestSchema", () => {

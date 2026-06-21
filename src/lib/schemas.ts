@@ -19,7 +19,6 @@ const inputTextSchema = z
 export const translateRequestSchema = z.object({
   inputText: inputTextSchema,
   direction: directionSchema,
-  formalityLevel: z.number().int().min(1).max(5),
 });
 
 export const rewriteRequestSchema = z.object({

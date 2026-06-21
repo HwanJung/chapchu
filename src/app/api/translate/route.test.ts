@@ -22,7 +22,7 @@ describe("POST /api/translate", () => {
     translateText.mockResolvedValue(result);
 
     const response = await POST(
-      request({ inputText: "점메추 부탁", direction: "MZ_TO_SENIOR", formalityLevel: 2 }),
+      request({ inputText: "점메추 부탁", direction: "MZ_TO_SENIOR" }),
     );
 
     expect(response.status).toBe(200);
@@ -30,13 +30,12 @@ describe("POST /api/translate", () => {
     expect(translateText).toHaveBeenCalledWith({
       inputText: "점메추 부탁",
       direction: "MZ_TO_SENIOR",
-      formalityLevel: 2,
     });
   });
 
   it("returns a common validation error", async () => {
     const response = await POST(
-      request({ inputText: " ", direction: "INVALID", formalityLevel: 7 }),
+      request({ inputText: " ", direction: "INVALID" }),
     );
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({

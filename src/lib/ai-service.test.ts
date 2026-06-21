@@ -12,7 +12,6 @@ describe("translation prompt", () => {
     const prompt = buildTranslationSystemPrompt({
       inputText: "사진 분위기가 참 좋구나.",
       direction: "SENIOR_TO_MZ",
-      formalityLevel: 1,
     });
 
     expect(prompt).toContain("<mz_style_guide reviewed_at=\"2026-06-21\">");
@@ -41,29 +40,17 @@ describe("translation prompt", () => {
     expect(prompt).not.toContain("<approved_expressions>");
     expect(prompt).not.toContain("문장당 유행 표현은 최대");
     expect(prompt).not.toContain("격식 수준");
-
-    const casualPrompt = buildTranslationSystemPrompt({
-      inputText: "사진 분위기가 참 좋구나.",
-      direction: "SENIOR_TO_MZ",
-      formalityLevel: 5,
-    });
-    expect(casualPrompt).toBe(prompt);
   });
 
-  it("keeps formality and includes interpretation examples for SNS-to-senior translation", () => {
+  it("includes interpretation examples for SNS-to-senior translation", () => {
     const prompt = buildTranslationSystemPrompt({
       inputText: "이 사진 진짜 느좋.",
       direction: "MZ_TO_SENIOR",
-      formalityLevel: 2,
     });
 
-    expect(prompt).toContain("격식 수준은 '정중함:");
+    expect(prompt).not.toContain("격식 수준");
     expect(prompt).toContain("<mz_style_guide reviewed_at=\"2026-06-21\">");
-    expect(prompt).toContain("<term_definitions>");
-    for (const definition of MZ_STYLE_GUIDE.termDefinitions) {
-      expect(prompt).toContain(`<expression>${definition.term}</expression>`);
-      expect(prompt).toContain(`<meaning>${definition.meaning}</meaning>`);
-    }
+    expect(prompt).not.toContain("<term_definitions>");
     expect(prompt).toContain("<examples>");
     for (const example of MZ_STYLE_GUIDE.mzToSeniorExamples) {
       expect(prompt).toContain(`<input>${example.input}</input>`);

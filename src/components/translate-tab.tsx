@@ -6,20 +6,17 @@ import { TextComposer } from "@/components/text-composer";
 import { useApiRequest } from "@/hooks/use-api-request";
 import type { Direction, TranslateRequest, TranslateResponse } from "@/lib/schemas";
 
-const formalityLabels = ["매우 정중", "정중", "보통", "친근", "매우 캐주얼"];
-
 export function TranslateTab() {
   const [inputText, setInputText] = useState("");
   const [direction, setDirection] = useState<Direction>("MZ_TO_SENIOR");
-  const [formalityLevel, setFormalityLevel] = useState(3);
   const { state, run, reset } = useApiRequest<TranslateRequest, TranslateResponse>(
     "/api/translate",
   );
 
-  function submit(level = formalityLevel) {
+  function submit() {
     const trimmed = inputText.trim();
     if (!trimmed) return;
-    void run({ inputText: trimmed, direction, formalityLevel: level });
+    void run({ inputText: trimmed, direction });
   }
 
   function switchDirection() {
@@ -27,11 +24,6 @@ export function TranslateTab() {
       current === "MZ_TO_SENIOR" ? "SENIOR_TO_MZ" : "MZ_TO_SENIOR",
     );
     reset();
-  }
-
-  function retranslate(value: string) {
-    const level = Number(value);
-    if (state.status === "success") submit(level);
   }
 
   const isMZToSenior = direction === "MZ_TO_SENIOR";
@@ -64,31 +56,6 @@ export function TranslateTab() {
           value={inputText}
           onChange={setInputText}
         />
-
-        {isMZToSenior && (
-          <div className="formality-control">
-            <div className="control-heading">
-              <label htmlFor="formality">말투의 격식</label>
-              <strong>{formalityLabels[formalityLevel - 1]}</strong>
-            </div>
-            <input
-              id="formality"
-              type="range"
-              min="1"
-              max="5"
-              step="1"
-              value={formalityLevel}
-              style={{ "--range-progress": `${(formalityLevel - 1) * 25}%` } as React.CSSProperties}
-              onChange={(event) => setFormalityLevel(Number(event.target.value))}
-              onPointerUp={(event) => retranslate(event.currentTarget.value)}
-              onKeyUp={(event) => retranslate(event.currentTarget.value)}
-            />
-            <div className="range-labels" aria-hidden="true">
-              <span>정중하게</span>
-              <span>편안하게</span>
-            </div>
-          </div>
-        )}
 
         <button
           className="primary-button"
