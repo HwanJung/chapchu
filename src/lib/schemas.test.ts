@@ -44,6 +44,15 @@ describe("rewriteRequestSchema", () => {
       rewriteRequestSchema.safeParse({ inputText: "안녕하세요", audience: "STRANGER" }).success,
     ).toBe(false);
   });
+
+  it.each(["COWORKER", "FRIEND", "FAMILY"])(
+    "rejects removed audience %s",
+    (audience) => {
+      expect(
+        rewriteRequestSchema.safeParse({ inputText: "안녕하세요", audience }).success,
+      ).toBe(false);
+    },
+  );
 });
 
 describe("translateResponseSchema", () => {

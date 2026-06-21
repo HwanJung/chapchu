@@ -15,10 +15,7 @@ import {
 const audienceDescriptions = {
   PROFESSOR: "교수님",
   BOSS: "직장 상사",
-  COWORKER: "회사 동료",
-  FRIEND: "친구",
   PARTNER: "연인",
-  FAMILY: "가족",
 } as const;
 
 const sharedRules = `

@@ -4,10 +4,7 @@ export const directionSchema = z.enum(["MZ_TO_SENIOR", "SENIOR_TO_MZ"]);
 export const audienceSchema = z.enum([
   "PROFESSOR",
   "BOSS",
-  "COWORKER",
-  "FRIEND",
   "PARTNER",
-  "FAMILY",
 ]);
 
 const inputTextSchema = z

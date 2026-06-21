@@ -9,10 +9,7 @@ import type { Audience, RewriteRequest, RewriteResponse } from "@/lib/schemas";
 const audiences: { value: Audience; label: string; icon: string }[] = [
   { value: "PROFESSOR", label: "교수님", icon: "학" },
   { value: "BOSS", label: "직장 상사", icon: "상" },
-  { value: "COWORKER", label: "회사 동료", icon: "동" },
-  { value: "FRIEND", label: "친구", icon: "친" },
   { value: "PARTNER", label: "연인", icon: "연" },
-  { value: "FAMILY", label: "가족", icon: "가" },
 ];
 
 export function RewriteTab() {
