@@ -29,6 +29,9 @@ describe("translation prompt", () => {
     }
     expect(prompt).toContain("문장당 유행 표현은 최대 2개");
     expect(prompt).toContain("어떤 경우에도 결과에 사용하지 않는다");
+    expect(prompt).toContain("음슴체를 주로 사용한다");
+    expect(prompt).toContain("'~하누', '~했누', '~이누'");
+    expect(prompt).toContain("딱딱한 한자어나 격식을 차린 낱말은 최대한 피하고");
     expect(prompt).not.toContain("격식 수준");
 
     const casualPrompt = buildTranslationSystemPrompt({
