@@ -30,19 +30,19 @@ export const MEME_DICTIONARY = [
   {
     term: "늙크크",
     meaning: "나이가 들었다.",
-    examples: ["요즘 체력이 예전 같지 않네, 늙크크."],
+    examples: ["난 이제 늙크크라 신조어 못 따라가겠다."],
     tags: ["나이", "자조"],
   },
   {
     term: "화석",
     meaning: "나이가 많은 사람 또는 오래전부터 있던 사람.",
-    examples: ["이 모임에서는 내가 거의 화석이야."],
+    examples: ["이 모임에서 나만 화석이야."],
     tags: ["나이", "오래됨"],
   },
   {
     term: "영크크",
     meaning: "어리다.",
-    examples: ["막내라 그런지 역시 영크크."],
+    examples: ["23살? 영크크네"],
     tags: ["나이", "어림"],
   },
   {
@@ -54,43 +54,43 @@ export const MEME_DICTIONARY = [
   {
     term: "바이럴 타다",
     meaning: "온라인에서 빠르게 퍼져 유행이 되다.",
-    examples: ["그 영상이 제대로 바이럴 타서 조회 수가 크게 늘었어."],
+    examples: ["그 음식 바이럴돼서 벌써 대기업에서 상품내고있더라."],
     tags: ["유행", "확산"],
   },
   {
     term: "잼민이",
     meaning: "어린아이 또는 어린아이처럼 행동하는 사람.",
-    examples: ["게임에서 잼민이처럼 떼쓰지 마."],
+    examples: ["잼민이는 게임 끄고 학원이나 가라~."],
     tags: ["어림", "놀림"],
   },
   {
     term: "ㄴㅁㅁㅅㅇ",
     meaning: "너무 무서워.",
-    examples: ["갑자기 불이 꺼졌어, ㄴㅁㅁㅅㅇ."],
+    examples: ["통장에 돈이 하나도 없네. ㄴㅁㅁㅅㅇ."],
     tags: ["공포", "초성"],
   },
   {
     term: "ㅇㄱㅈㅉㅇㅇ?",
     meaning: "이거 진짜예요?",
-    examples: ["다음 주에 휴강이라고? ㅇㄱㅈㅉㅇㅇ?"],
+    examples: ["다음 주에 학교간다고요? ㅇㄱㅈㅉㅇㅇ?"],
     tags: ["의문", "놀람", "초성"],
   },
   {
     term: "느좋",
     meaning: "느낌이 좋다.",
-    examples: ["오늘 올린 사진 완전 느좋이다."],
+    examples: ["오늘 올린 사진 완전 느좋."],
     tags: ["호감", "분위기"],
   },
   {
     term: "밤티",
     meaning: "못생겼거나 세련되지 못하다.",
-    examples: ["이 조합은 색이 안 맞아서 좀 밤티 난다."],
+    examples: ["이 조합은 색이 안 맞아서 좀 밤티임."],
     tags: ["비호감", "외형"],
   },
   {
     term: "야르",
     meaning: "기분이 좋을 때 쓰는 긍정적인 추임새.",
-    examples: ["야르, 오늘 일찍 퇴근한다!"],
+    examples: ["야르~! 맛있겠다!"],
     tags: ["기쁨", "추임새"],
   },
   {
@@ -102,49 +102,49 @@ export const MEME_DICTIONARY = [
   {
     term: "나같경",
     meaning: "나 같은 경우.",
-    examples: ["나같경 아침에 운동하는 게 더 잘 맞아."],
+    examples: ["나같경 아침에 운동하는 게 더 잘 맞음."],
     tags: ["경험", "줄임말"],
   },
   {
     term: "듀듀듀",
     meaning: "슬퍼서 우는 모습을 나타내는 말.",
-    examples: ["시험에서 한 문제 차이로 떨어졌어, 듀듀듀."],
+    examples: ["듀듀듀... 먹던 음식 떨어트렸어."],
     tags: ["슬픔", "울음"],
   },
   {
     term: "듀아아아아",
     meaning: "슬퍼서 크게 우는 모습을 나타내는 말.",
-    examples: ["기다리던 공연이 취소됐다니 듀아아아아."],
+    examples: ["오늘 공연 취소됨 듀아아아아."],
     tags: ["슬픔", "울음", "과장"],
   },
   {
     term: "읏쇼읏쇼",
     meaning: "힘을 내어 열심히 하는 모습을 나타내는 말.",
-    examples: ["마감까지 얼마 안 남았으니 읏쇼읏쇼 해보자."],
+    examples: ["마감까지 얼마 안 남았으니 읏쇼읏쇼 힘내자!"],
     tags: ["노력", "응원"],
   },
   {
     term: "푸데푸데",
     meaning: "잠자는 모습을 나타내는 말.",
-    examples: ["오늘은 일찍 푸데푸데 하러 갈게."],
+    examples: ["점심먹고 푸데푸데 꿀잠잤더니 피부 매끈해짐."],
     tags: ["수면", "귀여움"],
   },
   {
     term: "폼미",
     meaning: "매우 멋지다.",
-    examples: ["오늘 경기 마지막 슛 진짜 폼미."],
+    examples: ["오늘 마지막슛 진짜 폼미."],
     tags: ["감탄", "칭찬"],
   },
   {
     term: "폼 미쳤다",
     meaning: "실력이나 상태가 매우 뛰어나고 멋지다.",
-    examples: ["오늘 무대 폼 미쳤다."],
+    examples: ["오늘 무대 진짜 폼 미쳤다."],
     tags: ["감탄", "칭찬"],
   },
   {
     term: "마참내",
     meaning: "마침내.",
-    examples: ["마참내 프로젝트가 끝났다!"],
+    examples: ["마참내! 프로젝트 끝남!"],
     tags: ["성취", "기쁨"],
   },
   {
@@ -156,25 +156,25 @@ export const MEME_DICTIONARY = [
   {
     term: "알잘딱깔센",
     meaning: "알아서 잘, 딱 깔끔하고 센스 있게.",
-    examples: ["자료는 알잘딱깔센으로 정리해 줘."],
+    examples: ["자료는 알잘딱깔센으로 정리해."],
     tags: ["요청", "센스", "줄임말"],
   },
   {
     term: "감다살",
     meaning: "감각이 살아 있어 분위기나 상황을 잘 살렸다.",
-    examples: ["이 선곡은 진짜 감다살이다."],
+    examples: ["선곡 진짜 감다살이다."],
     tags: ["칭찬", "감각"],
   },
   {
     term: "감다뒤",
     meaning: "감각이 떨어져 분위기나 상황을 살리지 못했다.",
-    examples: ["여기서 광고를 넣다니 완전 감다뒤네."],
+    examples: ["여기서 광고를 넣어? 완전 감다뒤."],
     tags: ["비판", "감각"],
   },
   {
     term: "감다죽",
     meaning: "감각이 떨어져 분위기나 상황을 살리지 못했다.",
-    examples: ["이번 디자인 변경은 좀 감다죽이다."],
+    examples: ["이번 디자인 변경은 좀 감다죽."],
     tags: ["비판", "감각"],
   },
   {
@@ -186,7 +186,7 @@ export const MEME_DICTIONARY = [
   {
     term: "개추",
     meaning: "매우 추천하거나 공감한다.",
-    examples: ["이 의견은 개추한다."],
+    examples: ["와 ㅋㅋ 개추 ㅋㅋㅋ"],
     tags: ["추천", "공감"],
   },
   {
@@ -198,25 +198,25 @@ export const MEME_DICTIONARY = [
   {
     term: "이왜진",
     meaning: "이게 왜 진짜인가?",
-    examples: ["농담인 줄 알았는데 이왜진."],
+    examples: ["농담인 줄 알았는데 이왜진?"],
     tags: ["놀람", "의문", "줄임말"],
   },
   {
     term: "무뎌보자",
     meaning: "먹어 보자.",
-    examples: ["음식 나왔으니 이제 무뎌보자."],
+    examples: ["마라탕을 무뎌보자!."],
     tags: ["식사", "말투"],
   },
   {
     term: "RED RED",
     meaning: "금지.",
-    examples: ["회의 중에 그 얘기는 RED RED야."],
+    examples: ["회의 중에 그 얘기는 RED RED."],
     tags: ["금지", "강조"],
   },
   {
     term: "ㅇㅂ",
     meaning: "너무 지나치거나 말도 안 된다.",
-    examples: ["배송비가 물건값보다 비싸다고? ㅇㅂ."],
+    examples: ["배송비가 물건값보다 비싸다고? ㅇㅂ;;"],
     tags: ["황당", "과도함", "초성"],
   },
   {
@@ -228,13 +228,13 @@ export const MEME_DICTIONARY = [
   {
     term: "정병",
     meaning: "정신병 또는 정신적으로 매우 힘든 상태.",
-    examples: ["계속 남과 비교하다가 정병 올 것 같아."],
+    examples: ["계속 남이랑 비교하다가 정병옴."],
     tags: ["정신건강", "비속어"],
   },
   {
     term: "추구미",
     meaning: "자신이 추구하는 이미지나 미적 취향.",
-    examples: ["단정하고 편안한 분위기가 내 추구미야."],
+    examples: ["이런 옷이 추구미야."],
     tags: ["취향", "이미지"],
   },
   {
@@ -252,7 +252,7 @@ export const MEME_DICTIONARY = [
   {
     term: "ㅇㄱㄹㅇ",
     meaning: "이거 정말이다 또는 매우 동의한다.",
-    examples: ["주말은 너무 짧다는 말, ㅇㄱㄹㅇ."],
+    examples: ["ㅇㄱㄹㅇ. 주말 너무 짧아."],
     tags: ["동의", "강조", "초성"],
   },
   {
@@ -276,7 +276,7 @@ export const MEME_DICTIONARY = [
   {
     term: "핑프",
     meaning: "검색하면 알 수 있는 정보를 직접 찾지 않고 물어보는 사람.",
-    examples: ["검색 한 번이면 나오는데 계속 묻는 핑프가 되지는 말자."],
+    examples: ["핑프야? 검색을 해."],
     tags: ["검색", "비판", "줄임말"],
   },
   {
@@ -294,7 +294,7 @@ export const MEME_DICTIONARY = [
   {
     term: "문찐",
     meaning: "유행이나 대중문화에 뒤처진 사람.",
-    examples: ["요즘 유행을 하나도 몰라서 문찐 된 기분이야."],
+    examples: ["요즘 유행을 하나도 몰라서 문찐 된 기분."],
     tags: ["유행", "소외", "줄임말"],
   },
   {
