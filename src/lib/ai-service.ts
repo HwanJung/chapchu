@@ -55,11 +55,6 @@ function buildSeniorToMzStyleGuide(): string {
 - '~라는 뜻', '~를 의미' 같은 표현을 사용하지 않는다.
 - 해설이나 친절한 부연 설명을 덧붙이지 않는다.
 - prohibited_expressions의 표현은 결과에 사용하지 않는다.
-- 혐오표현
-- 성별 비하
-- 세대 비하
-- 정치적 표현
-- 공격적인 욕설
 </absolute_prohibitions>
 <rules>
 - 짧게 쓴다.
