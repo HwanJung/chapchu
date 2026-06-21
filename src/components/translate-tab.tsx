@@ -66,28 +66,30 @@ export function TranslateTab() {
           onChange={setInputText}
         />
 
-        <div className="formality-control">
-          <div className="control-heading">
-            <label htmlFor="formality">말투의 격식</label>
-            <strong>{formalityLabels[formalityLevel - 1]}</strong>
+        {isMZToSenior && (
+          <div className="formality-control">
+            <div className="control-heading">
+              <label htmlFor="formality">말투의 격식</label>
+              <strong>{formalityLabels[formalityLevel - 1]}</strong>
+            </div>
+            <input
+              id="formality"
+              type="range"
+              min="1"
+              max="5"
+              step="1"
+              value={formalityLevel}
+              style={{ "--range-progress": `${(formalityLevel - 1) * 25}%` } as React.CSSProperties}
+              onChange={(event) => setFormalityLevel(Number(event.target.value))}
+              onPointerUp={(event) => retranslate(event.currentTarget.value)}
+              onKeyUp={(event) => retranslate(event.currentTarget.value)}
+            />
+            <div className="range-labels" aria-hidden="true">
+              <span>정중하게</span>
+              <span>편안하게</span>
+            </div>
           </div>
-          <input
-            id="formality"
-            type="range"
-            min="1"
-            max="5"
-            step="1"
-            value={formalityLevel}
-            style={{ "--range-progress": `${(formalityLevel - 1) * 25}%` } as React.CSSProperties}
-            onChange={(event) => setFormalityLevel(Number(event.target.value))}
-            onPointerUp={(event) => retranslate(event.currentTarget.value)}
-            onKeyUp={(event) => retranslate(event.currentTarget.value)}
-          />
-          <div className="range-labels" aria-hidden="true">
-            <span>정중하게</span>
-            <span>편안하게</span>
-          </div>
-        </div>
+        )}
 
         <button
           className="primary-button"

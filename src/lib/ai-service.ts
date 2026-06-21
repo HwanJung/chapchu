@@ -1,5 +1,6 @@
 import { zodTextFormat } from "openai/helpers/zod";
 import { AIRefusalError } from "@/lib/api-error";
+import { MZ_STYLE_GUIDE } from "@/lib/mz-style-guide";
 import { getOpenAIClient, getOpenAIModel } from "@/lib/openai";
 import {
   rewriteResponseSchema,
@@ -34,6 +35,74 @@ const sharedRules = `
 - 자연스러운 현대 한국어 문장으로 작성한다.
 `;
 
+function serializeExamples(
+  examples: readonly { readonly input: string; readonly output: string }[],
+): string {
+  return examples
+    .map(
+      ({ input, output }) => `<example>
+<input>${input}</input>
+<output>${output}</output>
+</example>`,
+    )
+    .join("\n");
+}
+
+function buildSeniorToMzStyleGuide(): string {
+  const examples = serializeExamples(MZ_STYLE_GUIDE.seniorToMzExamples);
+
+  return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
+<approved_expressions>${MZ_STYLE_GUIDE.approvedExpressions.join(", ")}</approved_expressions>
+<prohibited_expressions>${MZ_STYLE_GUIDE.prohibitedExpressions.join(", ")}</prohibited_expressions>
+<rules>
+- 유행 표현은 approved_expressions에 있는 표현만 사용한다.
+- prohibited_expressions의 표현은 어떤 경우에도 결과에 사용하지 않는다.
+- 문장당 유행 표현은 최대 ${MZ_STYLE_GUIDE.maxTrendExpressionsPerSentence}개만 사용한다.
+- 문맥에 맞는 승인 표현이 없으면 억지로 넣지 말고 짧고 자연스러운 SNS 문체로만 바꾼다.
+- 임의의 이모지, 'ㅋㅋ', 과도한 줄임말을 추가하지 않는다.
+</rules>
+</mz_style_guide>
+<examples>
+${examples}
+</examples>`;
+}
+
+function buildMzToSeniorStyleGuide(): string {
+  const examples = serializeExamples(MZ_STYLE_GUIDE.mzToSeniorExamples);
+
+  return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
+<rules>
+- 예시의 입력 표현이 문장에 포함되면 문맥과 격식 수준에 맞는 일반적인 표현으로 풀어 쓴다.
+- 예시와 정확히 일치하지 않더라도 같은 표현의 활용형이나 띄어쓰기 변형은 같은 뜻으로 해석한다.
+- 비유나 유행 표현의 의미를 풀되 원문의 감정과 의도는 유지한다.
+</rules>
+<examples>
+${examples}
+</examples>
+</mz_style_guide>`;
+}
+
+export function buildTranslationSystemPrompt(request: TranslateRequest): string {
+  const direction =
+    request.direction === "MZ_TO_SENIOR"
+      ? "최근 한국 SNS의 짧고 캐주얼한 표현을 중장년·노년층도 자연스럽게 이해할 표현으로"
+      : "중장년·노년층에게 익숙한 표현을 최근 한국 SNS의 짧고 캐주얼한 문체로";
+
+  const directionRules =
+    request.direction === "SENIOR_TO_MZ"
+      ? `- 입력 문장을 ${direction} 번역한다.
+${buildSeniorToMzStyleGuide()}`
+      : `- 입력 문장을 ${direction} 번역한다.
+- 격식 수준은 '${formalityDescriptions[request.formalityLevel]}'이다.
+${buildMzToSeniorStyleGuide()}`;
+
+  return `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.
+${sharedRules}
+${directionRules}
+- 주요 세대 표현만 최대 5개 골라 뜻, 뉘앙스, 사용 상황, 주의 상황을 설명한다.
+- 설명할 세대 표현이 없다면 termExplanations는 빈 배열로 반환한다.`;
+}
+
 export function hasRefusal(output: unknown): boolean {
   if (!Array.isArray(output)) return false;
 
@@ -62,22 +131,12 @@ export function requireParsed<T>(parsed: T | null, output: unknown): T {
 export async function translateText(
   request: TranslateRequest,
 ): Promise<TranslateResponse> {
-  const direction =
-    request.direction === "MZ_TO_SENIOR"
-      ? "MZ세대에게 익숙한 표현을 중장년·노년층도 자연스럽게 이해할 표현으로"
-      : "중장년·노년층에게 익숙한 표현을 MZ세대도 자연스럽게 이해할 표현으로";
-
   const response = await getOpenAIClient().responses.parse({
     model: getOpenAIModel(),
     input: [
       {
         role: "system",
-        content: `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.
-${sharedRules}
-- 입력 문장을 ${direction} 번역한다.
-- 격식 수준은 '${formalityDescriptions[request.formalityLevel]}'이다.
-- 주요 세대 표현만 최대 5개 골라 뜻, 뉘앙스, 사용 상황, 주의 상황을 설명한다.
-- 설명할 세대 표현이 없다면 termExplanations는 빈 배열로 반환한다.`,
+        content: buildTranslationSystemPrompt(request),
       },
       { role: "user", content: request.inputText },
     ],
