@@ -555,6 +555,8 @@ main {
   line-height: 1.7;
   letter-spacing: -0.025em;
   word-break: keep-all;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 
 .ai-note {
@@ -622,29 +624,52 @@ main {
 .term-title h3 {
   margin: 0;
   font-size: 16px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
-.term-card p {
+.term-details {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.term-details > div {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.term-details dt {
+  padding: 2px 0;
+  border-radius: 5px;
+  background: #f1f5f2;
+  color: var(--green-dark);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.term-details dd {
+  min-width: 0;
   margin: 0;
   color: #66716c;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 
-.term-card .term-meaning {
-  color: #394640;
-}
-
-.term-card .term-example {
-  margin-top: 10px;
+.term-details .term-example {
   padding-top: 9px;
   border-top: 1px solid #edf0ed;
-  color: #7a847f;
-  font-size: 11px;
 }
 
-.term-example strong {
-  color: var(--green-dark);
+.term-details .term-example dd {
+  color: #7a847f;
+  font-size: 11px;
 }
 
 .audience-picker {

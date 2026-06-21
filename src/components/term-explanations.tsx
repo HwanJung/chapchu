@@ -33,10 +33,16 @@ export function TermExplanations({
               <div className="term-title">
                 <h3>{item.term}</h3>
               </div>
-              <p className="term-meaning">{item.meaning}</p>
-              <p className="term-example">
-                <strong>예)</strong> {item.example}
-              </p>
+              <dl className="term-details">
+                <div>
+                  <dt>뜻</dt>
+                  <dd>{item.meaning}</dd>
+                </div>
+                <div className="term-example">
+                  <dt>예시</dt>
+                  <dd>{item.example}</dd>
+                </div>
+              </dl>
             </article>
           );
         })}

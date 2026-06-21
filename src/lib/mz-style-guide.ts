@@ -50,8 +50,8 @@ export const MZ_STYLE_GUIDE = {
       output: "마라탕은 가서 마라탕이라 무라",
     },
     {
-      input: "어떡해. 정말 슬프다.",
-      output: "듀아아아아아아",
+      input: "나 학점 망치고 마음이 아파. 위로해 줘.",
+      output: "나 학점 조지고 멘헤라 상태 됐어. 나데나데 해줘",
     },
     {
       input: "잘 모르겠는데?",

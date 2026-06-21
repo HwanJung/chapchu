@@ -34,11 +34,14 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
     expect(prompt).toContain("'~라는 뜻', '~를 의미'");
     expect(prompt).toContain("해설이나 친절한 부연 설명을 덧붙이지 않는다");
     expect(prompt).toContain("자연스러운 범위에서 조사를 생략한다");
-    expect(prompt).toContain("brain rot 스타일을 허용한다");
-    expect(prompt).toContain("최신 인터넷 밈을 적극적으로 사용한다");
-    expect(prompt).toContain("반드시 입력 문장보다 짧게 작성한다");
+    expect(prompt).toContain("원문의 사건, 감정, 원인과 결과를 빠뜨리지 않고 모두 유지한다");
+    expect(prompt).toContain("요청을 서술로 바꾸지 않는다");
+    expect(prompt).toContain("'위로해 줘'를 '위로함'으로 바꾸지 않는다");
+    expect(prompt).toContain("핵심 내용을 대신하게 하지 않는다");
+    expect(prompt).toContain("의미가 손실되지 않는 범위에서만");
+    expect(prompt).toContain("최신 인터넷 밈은 문장당 최대 2개만 사용한다");
     expect(prompt).toContain("어떤 경우에도 결과에 사용하지 않는다");
-    expect(prompt).toContain("음슴체를 주로 사용한다");
+    expect(prompt).toContain("요청문과 의문문의 기능은 유지한다");
     expect(prompt).toContain("'~하누', '~했누', '~이누'");
     expect(prompt).toContain("딱딱한 한자어나 격식을 차린 낱말은 최대한 피하고");
     expect(prompt).toContain(
@@ -46,7 +49,6 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
     );
     expect(prompt).toContain("밈을 억지로 사용하지 않는다");
     expect(prompt).not.toContain("<approved_expressions>");
-    expect(prompt).not.toContain("문장당 유행 표현은 최대");
     expect(prompt).not.toContain("격식 수준");
     expect(prompt).toContain(
       "matchedTerms에는 번역 결과 resultText에 실제로 사용한 표현만 넣는다",
@@ -86,6 +88,19 @@ ${JSON.stringify(MEME_DICTIONARY, null, 2)}
 
     expect(prompt).toContain("문맥에 맞는 사전 항목이 없으면 밈을 억지로 사용하지 않는다");
     expect(prompt).toContain("원문의 핵심 의미, 의도, 사실관계를 반드시 유지한다");
+  });
+
+  it("preserves the event, emotion, and request in a consoling context", () => {
+    const prompt = buildTranslationSystemPrompt({
+      inputText: "나 학점 망치고 마음이 아파. 위로해줘.",
+      direction: "SENIOR_TO_MZ",
+    });
+
+    expect(prompt).toContain("요청을 서술로 바꾸지 않는다");
+    expect(prompt).toContain("밈, 감탄사, 의성어와 의태어는 핵심 내용을 보조할 때만 사용하고");
+    expect(prompt).toContain("<input>나 학점 망치고 마음이 아파. 위로해 줘.</input>");
+    expect(prompt).toContain("<output>나 학점 조지고 멘헤라 상태 됐어. 나데나데 해줘</output>");
+    expect(prompt).not.toContain("<output>듀아아아아아아</output>");
   });
 
   it("allows a natural out-of-dictionary meme without copying example details", () => {

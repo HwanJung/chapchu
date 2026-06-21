@@ -27,8 +27,11 @@ describe("TermExplanations", () => {
     expect(html).toContain("밈·MZ어 뜻");
     expect(html).toContain("입력에서 찾은 표현");
     expect(html).toContain("느좋");
+    expect(html).toContain("<dt>뜻</dt>");
     expect(html).toContain("느낌이 좋다.");
+    expect(html).toContain("<dt>예시</dt>");
     expect(html).toContain("오늘 올린 사진 완전 느좋.");
+    expect(html).not.toContain("예)");
   });
 
   it("labels cards as expressions used by senior-to-MZ translation", () => {
