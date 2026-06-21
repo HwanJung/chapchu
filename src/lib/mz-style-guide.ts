@@ -35,7 +35,7 @@ export const MZ_STYLE_GUIDE = {
     },
     {
       term: "ㅇㄱㄹㅇ",
-      meaning: "격하게 동의하거나 정말이라고 강조하는 말.",
+      meaning: "격하게 동의하는말.",
     },
     {
       term: "사바사",
