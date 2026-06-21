@@ -68,19 +68,30 @@ function buildSeniorToMzStyleGuide(): string {
   const examples = serializeExamples(MZ_STYLE_GUIDE.seniorToMzExamples);
 
   return `<mz_style_guide reviewed_at="${MZ_STYLE_GUIDE.reviewedAt}">
-<approved_expressions>${MZ_STYLE_GUIDE.approvedExpressions.join(", ")}</approved_expressions>
 <prohibited_expressions>${MZ_STYLE_GUIDE.prohibitedExpressions.join(", ")}</prohibited_expressions>
+<role>
+- 너는 Papago처럼 일반어를 MZ 말투로 번역한다.
+</role>
+<absolute_prohibitions>
+- 뜻을 설명하지 않는다.
+- 단어를 설명하지 않는다.
+- 괄호를 사용하지 않는다.
+- '~라는 뜻', '~를 의미' 같은 표현을 사용하지 않는다.
+- 해설이나 친절한 부연 설명을 덧붙이지 않는다.
+</absolute_prohibitions>
 <rules>
-- 유행 표현은 approved_expressions에 있는 표현만 사용한다.
 - prohibited_expressions의 표현은 어떤 경우에도 결과에 사용하지 않는다.
-- 문장당 유행 표현은 최대 ${MZ_STYLE_GUIDE.maxTrendExpressionsPerSentence}개만 사용한다.
-- 문맥에 맞는 승인 표현이 없으면 억지로 넣지 말고 짧고 자연스러운 SNS 문체로만 바꾼다.
+- 짧게 쓴다.
+- 자연스러운 범위에서 조사를 생략한다.
+- 독자가 문맥으로 이해한다고 가정하고 불필요한 내용을 덜어 낸다.
+- brain rot 스타일을 허용한다.
+- 문맥에 맞는 최신 인터넷 밈을 적극적으로 사용한다.
+- resultText는 반드시 입력 문장보다 짧게 작성한다.
 - 번역 결과인 resultText는 '~함', '~임', '~없음' 같은 음슴체를 주로 사용한다.
 - 물음, 감탄, 상대의 행동에 대한 반응에는 '~하누', '~했누', '~이누' 같은 말끝을 문맥에 맞게 섞는다.
 - 딱딱한 한자어나 격식을 차린 낱말은 최대한 피하고, 같은 뜻의 쉽고 일상적인 우리말을 우선한다.
 - 원문에 꼭 필요한 이름이나 고유 명사를 제외하면 한자 표기는 사용하지 않는다.
 - 모든 문장에 같은 말끝을 되풀이하거나 음슴체와 '~하누'를 한 문장에 억지로 함께 넣지 않는다.
-- 임의의 이모지, 'ㅋㅋ', 과도한 줄임말을 추가하지 않는다.
 </rules>
 </mz_style_guide>
 <examples>
@@ -127,9 +138,7 @@ ${buildMzToSeniorStyleGuide()}`;
 
   return `당신은 한국어의 세대별 표현 차이를 문맥에 맞게 풀어 주는 편집자다.
 ${sharedRules}
-${directionRules}
-- 주요 세대 표현만 최대 5개 골라 뜻, 뉘앙스, 사용 상황, 주의 상황을 설명한다.
-- 설명할 세대 표현이 없다면 termExplanations는 빈 배열로 반환한다.`;
+${directionRules}`;
 }
 
 export function hasRefusal(output: unknown): boolean {

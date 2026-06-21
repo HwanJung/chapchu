@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ResultPanel } from "@/components/result-panel";
-import { TermExplanations, HighlightedText } from "@/components/term-explanations";
 import { TextComposer } from "@/components/text-composer";
 import { useApiRequest } from "@/hooks/use-api-request";
 import type { Direction, TranslateRequest, TranslateResponse } from "@/lib/schemas";
@@ -106,13 +105,8 @@ export function TranslateTab() {
         title="번역 결과"
         emptyMessage="번역할 문장을 입력하면 결과가 여기에 나타나요."
         getText={(data) => data.resultText}
-        renderText={(data) => (
-          <HighlightedText text={data.resultText} terms={data.termExplanations} />
-        )}
         onRetry={() => submit()}
-      >
-        {(data) => <TermExplanations terms={data.termExplanations} />}
-      </ResultPanel>
+      />
     </div>
   );
 }

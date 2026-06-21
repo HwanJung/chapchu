@@ -37,7 +37,6 @@ export const termExplanationSchema = z.object({
 
 export const translateResponseSchema = z.object({
   resultText: z.string().min(1),
-  termExplanations: z.array(termExplanationSchema).max(5),
 });
 
 export const rewriteResponseSchema = z.object({

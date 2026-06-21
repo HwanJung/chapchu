@@ -18,7 +18,7 @@ describe("POST /api/translate", () => {
   beforeEach(() => translateText.mockReset());
 
   it("returns structured translation data", async () => {
-    const result = { resultText: "점심 메뉴를 추천해 주세요.", termExplanations: [] };
+    const result = { resultText: "점심 메뉴를 추천해 주세요." };
     translateText.mockResolvedValue(result);
 
     const response = await POST(

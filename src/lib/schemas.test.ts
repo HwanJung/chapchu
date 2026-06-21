@@ -49,26 +49,9 @@ describe("rewriteRequestSchema", () => {
 });
 
 describe("translateResponseSchema", () => {
-  const explanation = {
-    term: "점메추",
-    meaning: "점심 메뉴 추천",
-    nuance: "가벼움",
-    usage: "친한 사이",
-    caution: "공식적인 자리",
-  };
-
-  it("limits term explanations to five", () => {
-    expect(
-      translateResponseSchema.safeParse({
-        resultText: "결과",
-        termExplanations: Array.from({ length: 5 }, () => explanation),
-      }).success,
-    ).toBe(true);
-    expect(
-      translateResponseSchema.safeParse({
-        resultText: "결과",
-        termExplanations: Array.from({ length: 6 }, () => explanation),
-      }).success,
-    ).toBe(false);
+  it("accepts translated text without term explanations", () => {
+    expect(translateResponseSchema.parse({ resultText: "결과" })).toEqual({
+      resultText: "결과",
+    });
   });
 });
